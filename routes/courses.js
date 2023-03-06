@@ -12,7 +12,7 @@ const {
 
 router
     .get('/', readData)
-    .get('/:id', loginRequired, readOne)
+    .get('/:id', readOne)
     .post('/', loginRequired, createData)
     .put('/:id', loginRequired, updateData)
     .delete('/:id',loginRequired, deleteData);
