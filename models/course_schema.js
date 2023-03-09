@@ -16,6 +16,12 @@ const courseSchema = Schema(
         rating: {
             type: Number
         },
+        holes: {
+            type: Number
+        },
+        scorecard: {
+            type: [Object]
+        },
         reviews: {
             type: [String]
         },
@@ -26,7 +32,7 @@ const courseSchema = Schema(
             type: String
         },
         latlong: {
-            type: String
+            type: [Number]
         }
     },
     { timestamps: true }
