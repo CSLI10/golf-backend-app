@@ -3,7 +3,9 @@ const router = express.Router();
 
 const { 
   register,
-  login
+  login,
+  readOne,
+  updateData
   } = require('../controllers/user_controller');
 
 // router
@@ -16,5 +18,7 @@ const {
 router
   .post('/register', register)
   .post('/login', login)
+  .get('/:id', readOne)
+  .put('/:id', updateData)
 
 module.exports = router;

@@ -49,10 +49,89 @@ const login = (req, res) => {
     })
 }
 
+const readOne = (req, res) => {
+
+    let id = req.params.id;
+
+    // connect to db and retrieve user with :id
+    User.findById(id)
+        .then((data) => {
+
+            if(data){
+                res.status(200).json(data);
+            }
+            else {
+                res.status(404).json({
+                    "message": `User with id: ${id} not found`
+                });
+            }
+            
+        })
+        .catch((err) => {
+            console.error(err);
+            if(err.name === 'CastError') {
+                res.status(400).json({
+                    "message": `Bad request, ${id} is not a valid id`
+                });
+            }
+            else {
+                res.status(500).json(err)
+            }
+            
+            
+        });
+
+
+};
+
+const updateData = (req, res) => {
+
+    let id = req.params.id;
+    let body = req.body;
+
+    User.findByIdAndUpdate(id, body, {
+        new: true
+    })
+        .then((data) => {
+
+            if(data){
+                res.status(201).json(data);
+            }
+            else {
+                res.status(404).json({
+                    "message": `Course with id: ${id} not found`
+                });
+            }
+            
+        })
+        .catch((err) => {
+            if(err.name === 'ValidationError'){
+                console.error('Validation Error!!', err);
+                res.status(422).json({
+                    "msg": "Validation Error",
+                    "error" : err.message 
+                });
+            }
+            else if(err.name === 'CastError') {
+                res.status(400).json({
+                    "message": `Bad request, ${id} is not a valid id`
+                });
+            }
+            else {
+                console.error(err);
+                res.status(500).json(err);
+            }
+        });
+
+
+};
+
 
 module.exports = {
     register,
-    login
+    login,
+    readOne,
+    updateData
 };
 
 

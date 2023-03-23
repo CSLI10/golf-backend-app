@@ -17,7 +17,7 @@ const readData = (req, res) => {
         });
 
     // res.status(200).json({
-    //     "msg" : "All festivals retrieved",
+    //     "msg" : "All courses retrieved",
     //     "data": data
     // });
 };
@@ -26,7 +26,7 @@ const readOne = (req, res) => {
 
     let id = req.params.id;
 
-    // connect to db and retrieve festival with :id
+    // connect to db and retrieve course with :id
     Course.findById(id)
         .then((data) => {
 
@@ -35,7 +35,7 @@ const readOne = (req, res) => {
             }
             else {
                 res.status(404).json({
-                    "message": `Festival with id: ${id} not found`
+                    "message": `Course with id: ${id} not found`
                 });
             }
             
@@ -63,7 +63,7 @@ const createData = (req, res) => {
 
     Course.create(festivalData)
         .then((data) => {
-            console.log('New Festival Created!', data);
+            console.log('New Course Created!', data);
             res.status(201).json(data);
         })
         .catch((err) => {
@@ -84,7 +84,7 @@ const createData = (req, res) => {
 
     // if(data.password.length < 6){
     //     res.status(422).json({
-    //         "msg": "festival password must be over 6 characters"
+    //         "msg": "course password must be over 6 characters"
     //     });
     // }
     // else{
@@ -112,7 +112,7 @@ const updateData = (req, res) => {
             }
             else {
                 res.status(404).json({
-                    "message": `Festival with id: ${id} not found`
+                    "message": `Course with id: ${id} not found`
                 });
             }
             
@@ -148,12 +148,12 @@ const deleteData = (req, res) => {
 
             if(data.deletedCount){
                 res.status(200).json({
-                    "message": `Festival with id: ${id} deleted successfully`
+                    "message": `Course with id: ${id} deleted successfully`
                 });
             }
             else {
                 res.status(404).json({
-                    "message": `Festival with id: ${id} not found`
+                    "message": `Course with id: ${id} not found`
                 });
             }
             

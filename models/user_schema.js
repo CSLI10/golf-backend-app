@@ -18,7 +18,17 @@ const userSchema = Schema(
         password: {
             type: String,
             required: [true, 'Password field is required'],
+        },
+        favourite_courses: {
+            type: [String]
+        },
+        played_courses: {
+            type: [Object]
+        },
+        stats: {
+            type: Object
         }
+
     },
     { timestamps: true }
 );
